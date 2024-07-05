@@ -1,0 +1,22 @@
+sudo apt update 
+sudo apt install apche2 -y 
+2 cd /var/www/html 
+3 vi index.html 
+4 git clone https://github.com/kritika27/netflix-homepage-clone.git 
+5 cd netflix-homepage-clone/ 
+6 ls 
+7 cd .. 
+8 git clone https://github.com/Empty-Hacker/Netflix-Clone.git 
+9 mv Netflix-Clone/* /var/www/html 
+10 rm index.html 
+11 vi index.html 
+
+
+sudo su 
+sudo apt update 
+sudo apt install apche2 -y 
+cd /var/www/html 
+nano index.html 
+-- open file ctrl X --- yes/no enter --- it will save file 
+git clone https://github.com/Empty-Hacker/Netflix-Clone.git 
+mv Netflix-Clone/* /var/www/html

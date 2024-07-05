@@ -1,0 +1,10 @@
+1  lsblk
+    2  mkdir mount
+    3  ls
+    5  sudo mount /dev/xvdf1 mount/
+    6  lsblk
+    7  cd .ssh/
+    8  ls
+   35  cp .ssh/authorized_keys mount/home/ubuntu/.ssh/
+   37  sudo umount mount/
+   38  lsblk
