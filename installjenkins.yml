@@ -1,0 +1,27 @@
+---
+- name: Install jenkins and start jenkins
+  hosts: webservers
+  become: true
+  tasks:
+    - name: Install java
+      yum:
+        name: java-11
+        state: present
+    - name: download jenkins repository file
+      get_url:
+        url: https://pkg.jenkins.io/redhat-stable/jenkins.repo
+        dest: /etc/yum.repos.d/jenkins.repo
+        mode: '0644'
+    - name: import jenkins GPG key
+      rpm_key:
+        state: present
+        key: https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+    - name: Install jenkins
+      yum:
+       name: jenkins
+       state: present
+    - name: start and enable jenkins service
+      service:
+          name: jenkins
+          state: started
+          enabled: yes
