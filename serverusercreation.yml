@@ -1,0 +1,10 @@
+---
+- name: creating users in nodes
+  hosts: webservers
+  become: true
+  tasks:
+    - name: Create a user
+      user:
+        name: user1
+        state: present
+        password: "{{ 'password' | password_hash('sha512') }}"
