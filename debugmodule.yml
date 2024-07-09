@@ -1,0 +1,40 @@
+---
+- name: Install jenkins and start jenkins
+  hosts: webservers
+  become: true
+  tasks:
+    - name: Install java
+      yum:
+        name: java-11
+        state: present
+    - name: download jenkins repository file
+      get_url:
+        url: https://pkg.jenins.io/redhat-stable/jenkins.repo
+        dest: /etc/yum.repos.d/jenkins.repos
+        mode: '0644'
+    - name: import jenkins GPG key
+      rpm_key: 
+        state: present
+        key: https://pkg.jenins.io/redhat-stable/jenkins.io-2023.key
+    - name: Install jenkins
+      yum:
+        name: jenkins
+        state: present
+    - name: message printing with debug module
+      debug:
+      msg: "Jenkins will restart now"
+  handlers:
+    - name: restart and enable jenkins service
+      service:
+        name: jenkins
+        state: restarted
+        enabled: yes   
+
+#this is for debug message only
+- name: echo
+  hosts: webservers
+  connection: local
+  tasks:
+   - name: print debug message
+     debug:
+       msg: Hello,World!
