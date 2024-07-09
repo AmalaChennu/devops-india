@@ -1,0 +1,22 @@
+---
+- name: Install Nginx and serve custom html page
+  hosts: webservers
+  become: true
+  tasks:
+    - name: Install Nginx
+      yum:
+        name: nginx
+        state: present
+    - name: Create HTML file
+      copy:
+        content:
+          <html>
+            <body>
+              <h1>Welcome to Ansible class</h1>
+            </body>
+          </html>
+        dest: /usr/share/nginx/html/index.html
+    - name: start nginx service
+      service:
+        name: nginx
+        state: started
