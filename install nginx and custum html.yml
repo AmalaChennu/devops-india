@@ -1,0 +1,18 @@
+---
+- name: Install Ngnix and custom html page
+  hosts: webserers
+  become: true
+  tasks:
+   - name: Install Ngnix
+     yum:
+       name: ngnix
+       state: present
+   - name: Create HTML file
+     copy:
+       content:
+          <html>
+            <body>
+              <h1>Welcome to the Ansible class</h1>
+            </body>
+          </html>
+       dest: /usr/share/nginx/
