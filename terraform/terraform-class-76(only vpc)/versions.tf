@@ -10,8 +10,9 @@ terraform {
 
 provider "aws" {
   region = ""
-  access_key = ""
+  /*access_key = ""
   secret_key = ""
+  */
 }
 /*
 play with terraform version
