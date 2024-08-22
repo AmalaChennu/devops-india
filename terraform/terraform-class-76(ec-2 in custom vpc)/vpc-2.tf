@@ -11,7 +11,7 @@ resource "aws_vpc" "vpc-dev" {
 resource "aws_subnet" "vpc-dev-public-subnet-1" {
     vpc_id                  = aws_vpc.vpc-dev.vpc_id
     cidr_block              = "10.0.0.0/24"
-    availability_zone       = "us-east-1a"
+    availability_zone       = ""
     map_public_ip_on_launch = true 
 }
 
