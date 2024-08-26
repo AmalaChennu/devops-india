@@ -25,7 +25,7 @@ resource "aws_vpc" "resourceid" {
         Name = "tf-demo"
     }
 }
-# Multi Provider configuration
+# Multi Provider configuration multiprovider.tf
 provider "aws" {
     region = "   "
     profile = "default"
@@ -40,7 +40,7 @@ provider "aws" {
 
 # provider dependency
 
-# Input variables Block
+# Input variables Block   variables.tf
 
 variable "aws_region" {    # aws region is a variable here
     description = "this region variable"
@@ -56,4 +56,43 @@ variable "ec2_instance-count" {
     description = "this is for count"
     type = string
     default = "(count of default instances like 1,2,3)"
+}
+variable "instance_type" {
+    description = "this is for defining type of instance"
+    type = string
+    default = "(type of instances like t3.micro,t2micro etc)"
+}
+
+# Resource file resource.tf
+
+resource "aws_instance" "myserver" {
+    ami = var.ec2_ami_id
+    instance_type = var.instance_type
+    key_name = "filename"
+    count = var.ec2_instance-count
+    user_data = <<-EOF
+
+    #!/bin/bash
+    sudo yum update -y
+    sudo yum install httpd -y
+    sudo systemctl enable httpd 
+    sudo systemctl start httpd
+    EOF
+    tags = {
+        "Name" = "Devops-server"
+    }
+}
+
+# Sensitive Variables variables.tf
+variable "db_server" {
+    description = "mysql_server"
+    type = string
+    sensitive = true 
+}
+
+# Output Values Block outputs.tf
+
+output "ec2_instance_publicip" {
+    description = "ec2 instance public ip"
+    value = aws_instance.myserver # (myserver is the instance id we gave in resource) 
 }
