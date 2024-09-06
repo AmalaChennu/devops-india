@@ -3,7 +3,15 @@ resource "aws_instance" "my-ec2-vm" {
     ami           = "ami from aws cloud"  # - Amazon Linux
     instance_type = t2.micro
     key_name      = "keypairfilenameno.pem required"
-    used_data  = file("apache-install.sh")
+    # user_data  = file("apache-install.sh")
+    user_data  = <<-EOF
+      #!/bin/bash
+      sudo yum update -y
+      sudo yum install httpd -y
+      sudo systemctl enable httpd
+      sudo systemctl start httpd
+      echo "<h>Devops Yogi | AWS Infra Created Using Terraform in a Region</h>" /var/www/html/index.html
+      EOF
     tags = {
         "Name" = "ec2-vm-null resource"
     }
