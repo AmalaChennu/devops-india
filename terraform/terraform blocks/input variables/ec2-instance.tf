@@ -11,6 +11,7 @@ resource "aws_instance" "my-ec2-vm" {
     sudo systemctl start httpd
     echo "<h1> Welcome To Devops | AWS Infra Created Using Terraform in us-east- Region </h1>
     EOF
+  vpc_secuity_group_ids = [aws_security_group.vpc-ssh.id, aws_security_group.vpc-web.id]  
   tags = {
     "Name" = "myc2vm"
   }
