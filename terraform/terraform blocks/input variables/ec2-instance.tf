@@ -2,6 +2,10 @@
 resource "aws_instance" "my-ec2-vm" {
   ami           = var.ec2_ami_id
   instance_type = var.ec2_instance_type
+  # for list variable operator
+  # instance_type = var.ec2_instance_type[1]
+  # for mapping variables
+  # instance_type = var.ec2_instance_type["dell"]
   count         = var.ec2_instance_count
   user_data     = <<-EOF
     #!/bin/bash

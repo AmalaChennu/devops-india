@@ -21,5 +21,21 @@ variable "ec2_instance_count" {
 variable "ec2_instance_type" {
   description = "EC2 Instance Type"
   type        = string
-  default     = "t2.micro"
-}
+  # default     = "t2.micro"
+}  
+# for list variable operator
+/* variable "ec2_instance_type" {
+    description = "EC2 Instance Type"
+    type        = list(string)
+    default     = [ "t2.micro", "t3.small", "t3.large"]
+}*/
+# for mapping variables
+/* variable "ec2_instance_type" {
+    description = "EC2 Instance Type"
+    type        = map(string)
+    default     = {
+      "dell"  = "t2.micro"
+      "hp"    = "t3.small"
+      "lenovo"= "t3.medium"
+  }
+}*/  
