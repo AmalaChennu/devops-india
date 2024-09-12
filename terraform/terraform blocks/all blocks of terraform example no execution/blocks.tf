@@ -1,9 +1,9 @@
 # Terraform block for version of terraform
 terraform {             
-    required_version = "~ 0.14"
-    /*required_version = "~> 0.14"
-     required_version = "= 0.14"
-     required_version = "> = 0.14"
+    required_version = "~0.14"
+    /*required_version = "~>0.14"
+     required_version = "=0.14"
+     required_version = ">=0.14"
     */
 # cloud provider you want and its version
     required_providers {    
