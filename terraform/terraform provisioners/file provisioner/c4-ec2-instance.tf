@@ -33,5 +33,9 @@ resource "aws_instance" "my-ec2-vm" {
      source      = "apps/app1"
      destination = "/tmp"
    } 
-   # 
+   # Copies all files and folders in apps/app2 to /tmp - CONTENTS OF FOLDER WILL BE COPIED
+   Provisioner "file" {
+     source      = "apps/app2/" # When "/" at the end is added  - CONTENTS of FOLDER WILL BE COPIED
+     destination = "/tmp"
+   }
 }
